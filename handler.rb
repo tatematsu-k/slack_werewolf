@@ -1,11 +1,13 @@
 require 'json'
+require './src/slack_event'
 
 def webhook(event:, context:)
+  body = JSON.parse(event["body"], symbolize_names: true)
+  p "request params: #{body}"
+
+  slack_event = SlackEvent.create(**body)
   {
     statusCode: 200,
-    body: {
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event
-    }.to_json
+    body: slack_event.call.to_json
   }
 end
