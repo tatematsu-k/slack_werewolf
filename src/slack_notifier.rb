@@ -17,10 +17,17 @@ class SlackNotifier
   def post(template:, **args)
     erb = ERB.new(File.read("./src/slack_notifier_template/#{template}.erb"))
     template_result = JSON.parse(erb.result_with_hash(channel: channel, **args), symbolize_names: true)
-    client.chat_postMessage(**template_result)
+    chat_post_message(**template_result)
   end
 
   private
+
+  def chat_post_message(**args)
+    p "slack post request with: #{args}"
+    client.chat_postMessage(**args).tap do |res|
+      p "slack post res: #{res}"
+    end
+  end
 
   def client
     @client ||= Slack::Web::Client.new
