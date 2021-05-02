@@ -49,6 +49,7 @@ functions:
           method: post
     environment:
       SLACK_SIGNING_SECRET: ${env:SLACK_SIGNING_SECRET}
+      SLACK_BOT_OAUTH_TOKEN: ${env:SLACK_BOT_OAUTH_TOKEN}
 
 # you can add CloudFormation resource templates here
 #resources:
