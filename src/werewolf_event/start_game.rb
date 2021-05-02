@@ -1,10 +1,10 @@
 require './src/werewolf_event/base'
 
 class WerewolfEvent
-  class Sample < Base
+  class StartGame < Base
     def reply
       notifier.post(
-        text: text,
+        template: "start_game",
       )
     end
   end

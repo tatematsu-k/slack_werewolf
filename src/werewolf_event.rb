@@ -1,7 +1,7 @@
-require './src/werewolf_event/sample'
+require './src/werewolf_event/start_game'
 
 class WerewolfEvent
   def self.create(**args)
-    Sample.new(**args)
+    StartGame.new(**args)
   end
 end

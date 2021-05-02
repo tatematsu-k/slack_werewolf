@@ -1,4 +1,6 @@
 require 'slack-ruby-client'
+require 'erb'
+require 'json'
 
 Slack.configure do |config|
   # APIトークンを設定
@@ -12,8 +14,10 @@ class SlackNotifier
     self.channel = channel
   end
 
-  def post(text:)
-    client.chat_postMessage(channel: channel, text: text, as_user: true)
+  def post(template:, **args)
+    erb = ERB.new(File.read("./src/slack_notifier_template/#{template}.erb"))
+    template_result = JSON.parse(erb.result_with_hash(channel: channel, **args), symbolize_names: true)
+    client.chat_postMessage(**template_result)
   end
 
   private
