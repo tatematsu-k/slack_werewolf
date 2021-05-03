@@ -50,6 +50,15 @@ functions:
     environment:
       SLACK_SIGNING_SECRET: ${env:SLACK_SIGNING_SECRET}
       SLACK_BOT_OAUTH_TOKEN: ${env:SLACK_BOT_OAUTH_TOKEN}
+  interactivity_handler:
+    handler: interactivity_handler.webhook
+    events:
+      - httpApi:
+          path: /interactivity_webhook
+          method: post
+    environment:
+      SLACK_SIGNING_SECRET: ${env:SLACK_SIGNING_SECRET}
+      SLACK_BOT_OAUTH_TOKEN: ${env:SLACK_BOT_OAUTH_TOKEN}
 
 # you can add CloudFormation resource templates here
 #resources:

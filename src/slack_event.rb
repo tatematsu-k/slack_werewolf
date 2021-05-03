@@ -1,5 +1,6 @@
 require './src/slack_event/url_verification'
 require './src/slack_event/event_callback'
+require './src/slack_event/block_actions'
 
 class SlackEvent
   def self.create(type:, **args)
