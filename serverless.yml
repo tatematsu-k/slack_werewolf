@@ -41,11 +41,11 @@ provider:
 #    - include-me-dir/**
 
 functions:
-  webhook:
-    handler: handler.webhook
+  direct_message_handler:
+    handler: direct_message_handler.webhook
     events:
       - httpApi:
-          path: /webhook
+          path: /direct_message_webhook
           method: post
     environment:
       SLACK_SIGNING_SECRET: ${env:SLACK_SIGNING_SECRET}
