@@ -7,6 +7,7 @@ class WerewolfEvent
     CANDIDATE_CLASSES
       .filter { |klass| klass.match?(**args) }
       .first
-      .new(**args)
+      &.new(**args)
+      &.tap { |i| p "call with #{i}" }
   end
 end
